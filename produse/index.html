@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="ro"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>Toate Produsele - Bloom Atelier</title><link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.DDCNxuYb.js"></script></head> <body class="bg-[#FFF5F7]">  <nav class="bg-white border-b border-pink-100 py-6 px-6 sticky top-0 z-50"> <div class="max-w-6xl mx-auto flex justify-between items-center"> <a href="/" class="flex items-center gap-2 text-gray-500 hover:text-pink-500 transition-colors group"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path> </svg> <span class="font-medium tracking-wide">Acasă</span> </a> <span class="text-xl font-serif font-bold text-pink-500">Colecția Noastră</span> </div> </nav> <div class="bg-[#FFF5F7] min-h-screen pb-24"> <div class="py-12 text-center px-6"> <h1 class="text-4xl lg:text-5xl font-serif font-bold text-gray-800 mb-4">Alege-ți Răsfățul</h1> <p class="text-gray-500 max-w-2xl mx-auto">Creații artizanale realizate manual cu multă grijă, pasiune și ingrediente alese.</p> </div> <div class="max-w-6xl mx-auto px-6 mb-12"> <div class="flex flex-wrap justify-center gap-4"> <button class="filter-btn active bg-pink-400 text-white px-6 py-2 rounded-full font-bold shadow-md transition-all" data-filter="toate">Toate</button> <button class="filter-btn bg-white text-pink-400 px-6 py-2 rounded-full font-bold shadow-sm hover:bg-pink-50 transition-all border border-pink-100" data-filter="Decor">Decorațiuni Săpun</button> <button class="filter-btn bg-white text-pink-400 px-6 py-2 rounded-full font-bold shadow-sm hover:bg-pink-50 transition-all border border-pink-100" data-filter="Flori de săpun">Aranjamente Florale</button> <button class="filter-btn bg-white text-pink-400 px-6 py-2 rounded-full font-bold shadow-sm hover:bg-pink-50 transition-all border border-pink-100" data-filter="Mărturii">Mărturii</button> </div> </div> <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="products-grid"> <div class="product-card bg-white rounded-[2.5rem] p-6 shadow-xl border border-pink-50 flex flex-col h-full transition-transform hover:-translate-y-1" data-category="Flori de săpun"> <div class="relative overflow-hidden rounded-[2rem] mb-6 aspect-square bg-pink-50"> <img src="/imagini/lavanda.jpg" alt="Aranjament Floral Lavandă" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"> <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-filter backdrop-blur-md px-4 py-2 rounded-full shadow-md border border-pink-100"> <span class="font-bold text-pink-600">45 RON</span> </div> </div> <div class="flex-grow flex flex-col justify-between"> <div> <h3 class="text-xl font-bold text-gray-800 mb-2 font-serif">Aranjament Floral Lavandă</h3> <p class="text-gray-500 text-sm leading-relaxed mb-6">Buchet realizat din flori de săpun cu parfum delicat de lavandă.</p> </div> <button onclick="addToCart(0, 'Aranjament Floral Lavandă', '45 RON', '/imagini/lavanda.jpg')" class="w-full bg-pink-50 hover:bg-pink-400 hover:text-white text-pink-500 font-bold py-4 rounded-2xl transition-colors active:scale-95">
+Adaugă în coș
+</button> </div> </div><div class="product-card bg-white rounded-[2.5rem] p-6 shadow-xl border border-pink-50 flex flex-col h-full transition-transform hover:-translate-y-1" data-category="Mărturii"> <div class="relative overflow-hidden rounded-[2rem] mb-6 aspect-square bg-pink-50"> <img src="/imagini/inima.jpg" alt="Mărturie Săpun Inimioară" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"> <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-filter backdrop-blur-md px-4 py-2 rounded-full shadow-md border border-pink-100"> <span class="font-bold text-pink-600">12 RON</span> </div> </div> <div class="flex-grow flex flex-col justify-between"> <div> <h3 class="text-xl font-bold text-gray-800 mb-2 font-serif">Mărturie Săpun Inimioară</h3> <p class="text-gray-500 text-sm leading-relaxed mb-6">Săpun artizanal în formă de inimă, ideal pentru nunți.</p> </div> <button onclick="addToCart(1, 'Mărturie Săpun Inimioară', '12 RON', '/imagini/inima.jpg')" class="w-full bg-pink-50 hover:bg-pink-400 hover:text-white text-pink-500 font-bold py-4 rounded-2xl transition-colors active:scale-95">
+Adaugă în coș
+</button> </div> </div><div class="product-card bg-white rounded-[2.5rem] p-6 shadow-xl border border-pink-50 flex flex-col h-full transition-transform hover:-translate-y-1" data-category="Decor"> <div class="relative overflow-hidden rounded-[2rem] mb-6 aspect-square bg-pink-50"> <img src="/imagini/scoica.jpg" alt="Săpun Decorativ Scoică" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"> <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-filter backdrop-blur-md px-4 py-2 rounded-full shadow-md border border-pink-100"> <span class="font-bold text-pink-600">20 RON</span> </div> </div> <div class="flex-grow flex flex-col justify-between"> <div> <h3 class="text-xl font-bold text-gray-800 mb-2 font-serif">Săpun Decorativ Scoică</h3> <p class="text-gray-500 text-sm leading-relaxed mb-6">Săpun cu detalii fine, perfect pentru decorul băii.</p> </div> <button onclick="addToCart(2, 'Săpun Decorativ Scoică', '20 RON', '/imagini/scoica.jpg')" class="w-full bg-pink-50 hover:bg-pink-400 hover:text-white text-pink-500 font-bold py-4 rounded-2xl transition-colors active:scale-95">
+Adaugă în coș
+</button> </div> </div> </div> </div> <a href="/cos" class="fixed bottom-8 right-8 bg-white border-2 border-pink-100 text-pink-500 p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center justify-center"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg> <span id="cart-count" class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full border-2 border-white shadow-sm">0</span> </a> <div id="toast-notification" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg text-gray-800 px-8 py-4 rounded-3xl shadow-2xl opacity-0 transition-all duration-300 pointer-events-none z-[100] flex items-center gap-4 border border-pink-200 min-w-[280px]"> <div class="bg-pink-100 w-10 h-10 flex items-center justify-center rounded-2xl shadow-inner"> <span class="text-xl">🌸</span> </div> <div class="flex flex-col"> <span class="text-[10px] uppercase tracking-widest text-pink-500 font-bold mb-1">Adăugat cu succes</span> <span id="toast-text" class="text-sm font-semibold text-gray-700">Produs în coș!</span> </div> </div> <script>
+    function showToast(productName) {
+      const toast = document.getElementById('toast-notification');
+      document.getElementById('toast-text').innerText = productName; 
+      toast.classList.remove('opacity-0', 'translate-y-10');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-10');
+      }, 3000);
+    }
+
+    window.addToCart = (idx, name, price, img) => {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let item = cart.find(i => i.name === name);
+      let p = typeof price === 'string' ? parseFloat(price.replace(/[^0-9.]+/g,"")) : price;
+      
+      if(item) { item.quantity += 1; } 
+      else { cart.push({name, price: p, image: img, quantity: 1}); }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCount();
+      showToast(name);
+    }
+
+    function updateCount() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const countEl = document.getElementById('cart-count');
+      if (countEl) countEl.innerText = count;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCount();
+
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const productCards = document.querySelectorAll('.product-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-pink-400', 'text-white');
+            b.classList.add('bg-white', 'text-pink-400');
+          });
+          btn.classList.remove('bg-white', 'text-pink-400');
+          btn.classList.add('bg-pink-400', 'text-white');
+
+          const filterValue = btn.getAttribute('data-filter');
+          productCards.forEach(card => {
+            if (filterValue === 'toate' || card.getAttribute('data-category') === filterValue) {
+              card.style.display = 'flex'; 
+            } else {
+              card.style.display = 'none'; 
+            }
+          });
+        });
+      });
+    });
+  </script>  <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script> </body> </html>
