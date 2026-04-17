@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import data from '../data/products.json';
+
+// Extragem produsele din noul format
+const products = data.produse || [];
+
+// Extragem automat categoriile ca să facem butoanele de filtrare (fără duplicate)
+const categories = ["Toate", ...new Set(products.map(p => p.categorie).filter(Boolean))];
+---
+
+<Layout title="Toate Produsele - Bloom Atelier">
+  <div class="pt-32 pb-32 px-6 max-w-7xl mx-auto min-h-screen relative z-10">
+    
+    <div class="text-center mb-16">
+      <h1 class="text-4xl lg:text-5xl font-serif font-bold text-gray-800 mb-6">Colecția Noastră</h1>
+      <p class="text-gray-500 text-lg max-w-2xl mx-auto">Explorează întregul nostru catalog. De la mărturii delicate pentru evenimente speciale, până la aranjamente florale impunătoare.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-16" id="filter-container">
+      {categories.map(category => (
+        <button 
+          class="filter-btn px-6 py-2 rounded-full border-2 border-pink-100 text-gray-600 font-medium hover:bg-pink-50 hover:text-pink-600 transition-all data-[active=true]:bg-pink-500 data-[active=true]:text-white data-[active=true]:border-pink-500 data-[active=true]:shadow-md"
+          data-category={category}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="products-grid">
+      {products.map((product, index) => (
+        <div 
+          class="product-card bg-white rounded-3xl p-6 shadow-xl border border-pink-50 transition-transform hover:-translate-y-2 flex flex-col h-full group"
+          data-category={product.categorie}
+        >
+          <div class="relative overflow-hidden rounded-2xl mb-6 aspect-square bg-pink-50 flex items-center justify-center">
+            <img 
+                src={product.imagine} 
+                alt={product.nume} 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                onerror="this.onerror=null; this.src='https://placehold.co/600x600/ffe4e6/ec4899?text=Imagine+in+lucru';"
+            />
+            
+            <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-filter backdrop-blur-md px-4 py-2 rounded-full shadow-md border border-pink-100 z-20">
+              <span class="font-bold text-pink-600">{product.pret}</span>
+            </div>
+            <div class="absolute top-4 left-4 bg-pink-100/90 text-pink-600 text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full z-20">
+              {product.categorie}
+            </div>
+          </div>
+          
+          <div class="flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-gray-800 mb-2 font-serif">{product.nume}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed mb-6">{product.descriere}</p>
+            </div>
+            <button 
+              onclick={`addToCart(${index}, '${product.nume}', '${product.pret}', '${product.imagine}')`}
+              class="w-full bg-pink-50 hover:bg-pink-400 hover:text-white text-pink-500 font-bold py-4 rounded-2xl transition-colors active:scale-95"
+            >
+              Adaugă în coș
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div id="no-products-msg" class="hidden text-center py-20 text-gray-500">
+        <span class="text-4xl mb-4 block">🌸</span>
+        Nu am găsit produse în această categorie momentan.
+    </div>
+  </div>
+
+  <a href="/cos" class="fixed bottom-8 right-8 bg-white border-2 border-pink-100 text-pink-500 p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center justify-center">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+    <span id="cart-count" class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full border-2 border-white shadow-sm">0</span>
+  </a>
+
+  <div id="toast-notification" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg text-gray-800 px-8 py-4 rounded-3xl shadow-2xl opacity-0 transition-all duration-300 pointer-events-none z-[100] flex items-center gap-4 border border-pink-200 min-w-[280px]">
+    <div class="bg-pink-100 w-10 h-10 flex items-center justify-center rounded-2xl shadow-inner">
+      <span class="text-xl">🌸</span>
+    </div>
+    <div class="flex flex-col">
+      <span class="text-[10px] uppercase tracking-widest text-pink-500 font-bold mb-1">Adăugat cu succes</span>
+      <span id="toast-text" class="text-sm font-semibold text-gray-700">Produs în coș!</span>
+    </div>
+  </div>
+
+  <script is:inline>
+    // 1. LOGICA PENTRU FILTRARE CATEGORII
+    document.addEventListener("DOMContentLoaded", () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const productCards = document.querySelectorAll('.product-card');
+      const noProductsMsg = document.getElementById('no-products-msg');
+
+      // Setează primul buton (Toate) ca activ din start
+      if(filterBtns.length > 0) {
+        filterBtns[0].setAttribute('data-active', 'true');
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Scoatem "activ" de la toate butoanele și îl punem doar pe cel apăsat
+          filterBtns.forEach(b => b.setAttribute('data-active', 'false'));
+          btn.setAttribute('data-active', 'true');
+
+          const selectedCategory = btn.getAttribute('data-category');
+          let visibleCount = 0;
+
+          // Ascundem/afișăm cardurile în funcție de categorie
+          productCards.forEach(card => {
+            if (selectedCategory === 'Toate' || card.getAttribute('data-category') === selectedCategory) {
+              card.style.display = 'flex';
+              visibleCount++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Arătăm un mesaj drăguț dacă nu sunt produse
+          if (visibleCount === 0) {
+              noProductsMsg.classList.remove('hidden');
+          } else {
+              noProductsMsg.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // 2. LOGICA PENTRU COȘ (la fel ca pe prima pagină)
+    function showToast(productName) {
+      const toast = document.getElementById('toast-notification');
+      const toastText = document.getElementById('toast-text');
+      toastText.innerText = productName; 
+      toast.classList.remove('opacity-0', 'translate-y-10');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-10');
+      }, 3000);
+    }
+
+    window.addToCart = (idx, name, price, img) => {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let item = cart.find(i => i.name === name);
+      let p = typeof price === 'string' ? parseFloat(price.replace(/[^0-9.]+/g,"")) : price;
+      
+      if(item) {
+        item.quantity += 1; 
+      } else {
+        cart.push({name, price: p, image: img, quantity: 1});
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCount();
+      showToast(name);
+    }
+
+    function updateCount() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const countEl = document.getElementById('cart-count');
+      if (countEl) countEl.innerText = count;
+    }
+
+    window.onload = updateCount;
+  </script>
+
+</Layout>

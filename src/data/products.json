@@ -1,0 +1,25 @@
+{
+  "produse": [
+    {
+      "nume": "Aranjament Floral Lavandă",
+      "pret": "45 RON",
+      "imagine": "/imagini/lavanda.jpg",
+      "descriere": "Buchet realizat din flori de săpun cu parfum delicat de lavandă.",
+      "categorie": "Flori de săpun"
+    },
+    {
+      "nume": "Mărturie Săpun Inimioară",
+      "pret": "12 RON",
+      "imagine": "/imagini/inima.jpg",
+      "descriere": "Săpun artizanal în formă de inimă, ideal pentru nunți.",
+      "categorie": "Mărturii"
+    },
+    {
+      "nume": "Săpun Decorativ Scoică",
+      "pret": "20 RON",
+      "imagine": "/imagini/scoica.jpg",
+      "descriere": "Săpun cu detalii fine, perfect pentru decorul băii.",
+      "categorie": "Decor"
+    }
+  ]
+}

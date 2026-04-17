@@ -1,0 +1,22 @@
+{
+  "name": "fast-ellipse",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "astro": "~6.1.7"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "@tailwindcss/postcss": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}

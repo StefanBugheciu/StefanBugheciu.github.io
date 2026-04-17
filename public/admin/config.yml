@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main # Asigură-te că așa se numește branch-ul tău de pe GitHub
+
+media_folder: "public/imagini" # Aici va salva pozele noi
+public_folder: "/imagini"
+
+collections:
+  - name: "catalog"
+    label: "Catalog Produse"
+    files:
+      - file: "src/data/products.json"
+        name: "produse"
+        label: "Lista de Produse"
+        fields:
+          - label: "Produse"
+            name: "produse"
+            widget: "list"
+            fields:
+              - {label: "Nume Produs", name: "nume", widget: "string"}
+              - {label: "Preț (ex: 45 lei)", name: "pret", widget: "string"}
+              - {label: "Imagine", name: "imagine", widget: "image"}
+              - {label: "Descriere", name: "descriere", widget: "text"}
+              - {label: "Categorie", name: "categorie", widget: "select", options: ["Flori de săpun", "Mărturii", "Decor", "Aranjamente Florale"]}
