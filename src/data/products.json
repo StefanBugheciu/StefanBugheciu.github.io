@@ -1,0 +1,11 @@
+{
+  "produse": [
+    {
+      "imagine": "/imagini/whatsapp-image-2026-04-17-at-13.19.34.jpeg",
+      "pret": "200",
+      "nume": "pachet premium",
+      "descriere": "absolut",
+      "categorie": "Flori de săpun"
+    }
+  ]
+}
