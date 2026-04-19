@@ -1,6 +1,28 @@
 backend:
   name: github
   repo: StefanBugheciu/StefanBugheciu.github.io
-  branch: main 
+  branch: main
   base_url: https://gatekeeper-decap.vercel.app
   auth_endpoint: auth
+
+media_folder: "public/imagini" # Aici se salvează pozele tale
+public_folder: "/imagini"      # Așa le găsește site-ul
+
+collections:
+  - name: "produse_magazin"
+    label: "Produse"
+    description: "Lista de produse pentru magazin"
+    files:
+      - file: "src/data/products.json"
+        label: "Lista de Produse"
+        name: "lista_produse"
+        fields:
+          - name: "produse"
+            label: "Toate Produsele"
+            widget: "list"
+            fields:
+              - {label: "Nume", name: "nume", widget: "string"}
+              - {label: "Preț (ex: 45 RON)", name: "pret", widget: "string"}
+              - {label: "Categorie (ex: Flori de săpun, Mărturii)", name: "categorie", widget: "string"}
+              - {label: "Imagine", name: "imagine", widget: "image", required: false}
+              - {label: "Descriere", name: "descriere", widget: "text"}
