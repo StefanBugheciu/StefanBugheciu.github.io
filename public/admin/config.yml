@@ -2,7 +2,7 @@ backend:
   name: github
   repo: StefanBugheciu/StefanBugheciu.github.io
   branch: main
-  base_url: https://gatekeeper-decap.vercel.app
+  base_url: https://netlify-cms-github-oauth-provider-m00l8khkt.vercel.app
   auth_endpoint: auth
 
 media_folder: "public/imagini" # Aici se salvează pozele tale
