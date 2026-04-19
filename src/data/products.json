@@ -20,6 +20,13 @@
       "imagine": "/imagini/scoica.jpg",
       "descriere": "Săpun cu detalii fine, perfect pentru decorul băii.",
       "categorie": "Decor"
+    },
+    {
+      "nume": "produs nou test",
+      "pret": "200",
+      "categorie": "masina timpului",
+      "imagine": "https://eventimag.ro/categorii/flori-plante-si-aranjamente/flori-din-sapun/?srsltid=AfmBOopypmUQ_844QAUA5qhRim7g-JhzVP2z7uukzo5V4ovdFteSdody",
+      "descriere": "da\n"
     }
   ]
 }
