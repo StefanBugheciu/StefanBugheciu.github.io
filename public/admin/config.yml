@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: StefanBugheciu/bloom-atelier
+  repo: StefanBugheciu/StefanBugheciu.github.io
   branch: main 
   base_url: https://gatekeeper-decap.vercel.app
   auth_endpoint: auth
